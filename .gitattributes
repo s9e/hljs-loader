@@ -1,0 +1,4 @@
+/.git*     export-ignore
+/demo.html export-ignore
+/ext       export-ignore
+/scripts   export-ignore
