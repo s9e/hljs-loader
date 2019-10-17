@@ -39,3 +39,23 @@ No configuration is required but a number of options are available and can be se
 <dt><code>data-hljs-url</code></dt>
 <dd>The root URL used for loading highlight.js files. Defaults to jsDelivr's URL.</dd>
 </dl>
+
+
+### API
+
+By default, all code blocks are highlighted when the library is loaded and you do not need to call the library explicitly. However, there may be some situations where you want to manually trigger highlighting or observe a section of the page for new code blocks.
+
+<dl>
+<dt><code>hljsLoader.highlightBlocks(element)</code></dt>
+<dd>Highlight all blocks in element's subtree. New languages may be loaded and some blocks may be highlighted asynchronously.
+
+<pre><code class="lang-js">hljsLoader.highlightBlocks(document.body);</code></pre></dd>
+
+<dt><code>hljsLoader.observe(selector)</code></dt>
+<dd>Observe the first element that matches given CSS selector and automatically highlight new code blocks.
+
+<pre><code class="lang-js">hljsLoader.observe('#id');</code></pre></dd>
+
+<dt><code>hljsLoader.disconnect()</code></dt>
+<dd>Disconnect the observer and stop looking for new code blocks.</dd>
+</dl>
