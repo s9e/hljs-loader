@@ -49,12 +49,18 @@ By default, all code blocks are highlighted when the library is loaded and you d
 <dt><code>hljsLoader.highlightBlocks(element)</code></dt>
 <dd>Highlight all blocks in element's subtree. New languages may be loaded and some blocks may be highlighted asynchronously.
 
-<pre><code class="lang-js">hljsLoader.highlightBlocks(document.body);</code></pre></dd>
+```js
+hljsLoader.highlightBlocks(document.body);
+```
+</dd>
 
 <dt><code>hljsLoader.observe(selector)</code></dt>
 <dd>Observe the first element that matches given CSS selector and automatically highlight new code blocks.
 
-<pre><code class="lang-js">hljsLoader.observe('#id');</code></pre></dd>
+```js
+hljsLoader.observe('#id');
+```
+</dd>
 
 <dt><code>hljsLoader.disconnect()</code></dt>
 <dd>Disconnect the observer and stop looking for new code blocks.</dd>
