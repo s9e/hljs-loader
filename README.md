@@ -1,4 +1,4 @@
-hljs-loader is a small (3 KB) script that can be added to any webpage to automatically load and run [highlight.js](https://highlightjs.org/) on all `pre > code` blocks. It automatically loads additional languages specified via the first `language-*` class name of every code block.
+hljs-loader is a small (3 KB) script that can be added to any webpage to automatically load and run [highlight.js](https://highlightjs.org/) on all `pre > code` blocks. It automatically loads additional languages specified via the first `lang-*` or `language-*` class name of each code block.
 
 
 ### Usage
@@ -6,9 +6,9 @@ hljs-loader is a small (3 KB) script that can be added to any webpage to automat
 Add this anywhere to your HTML page:
 
 ```html
-<script async src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.1/loader.min.js"
+<script async src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.2/loader.min.js"
         crossorigin="anonymous"
-        integrity="sha384-fiUfbVu5WfS+y/0EiW3QpI0iZScy4ET77WKz9f0dGwHGgLNQz6pQa8AdSi8Y59ZZ"></script>
+        integrity="sha384-Ddg1fxbyJ8jopcP7ywkmYwolvbUySxraRPtCH5F8EHy4p36EZwjDij+qDtypJV5Y"></script>
 ```
 
 
@@ -17,13 +17,13 @@ Add this anywhere to your HTML page:
 No configuration is required but a number of options are available and can be set on the `script` element that loads this script.
 
 ```html
-<script async src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.1/loader.min.js"
+<script async src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.2/loader.min.js"
         crossorigin="anonymous"
         data-hljs-observe="body"
         data-hljs-options='{"tabReplace":"    "}'
         data-hljs-style="github"
         data-hljs-url="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/"
-        integrity="sha384-fiUfbVu5WfS+y/0EiW3QpI0iZScy4ET77WKz9f0dGwHGgLNQz6pQa8AdSi8Y59ZZ"></script>
+        integrity="sha384-Ddg1fxbyJ8jopcP7ywkmYwolvbUySxraRPtCH5F8EHy4p36EZwjDij+qDtypJV5Y"></script>
 ```
 
 <dl>
