@@ -51,7 +51,7 @@
 	*/
 	function getLangFromBlock(block)
 	{
-		let m = /\blanguage-(\w+)/.exec(block.className.toLowerCase());
+		let m = /\blang(?:uage)?-(\w+)/.exec(block.className.toLowerCase());
 		if (m && !map)
 		{
 			// Delay generating the map until we actually need it
