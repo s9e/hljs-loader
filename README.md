@@ -22,7 +22,7 @@ No configuration is required but a number of options are available and can be se
         data-hljs-observe="body"
         data-hljs-options='{"tabReplace":"    "}'
         data-hljs-style="github"
-        data-hljs-url="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/"
+        data-hljs-url="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.0/build/"
         integrity="sha384-NkXoTL9Bauivu1p27LszPE2CDs/jZMF0+p1ZhlmRzoKXJfPk8pcQKmFLlvx5FDuk"></script>
 ```
 
