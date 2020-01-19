@@ -27,10 +27,15 @@ if (!$cnt)
 
 if ($version === 'current' || $version === 'new')
 {
-	$version = exec('git describe');
+	$gitVersion = exec('git describe');
 	if ($version === 'new')
 	{
-		++$version;
+		preg_match('((\\d++)\\.(\\d++)\\.(\\d++))', $gitVersion, $m);
+		$version = $m[1] . '.' . $m[2] . '.' . (1 + $m[3]);
+	}
+	else
+	{
+		$version = $gitVersion;
 	}
 }
 $new = preg_replace('(hljs-loader@\\K\\d++\\.\\d++\\.\\d++)', $version, $new, -1, $cnt);

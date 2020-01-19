@@ -6,4 +6,4 @@ git pull
 cd ../../scripts
 php patchSource.php
 ./minify.sh
-php patchReadme.php
+php patchReadme.php new
