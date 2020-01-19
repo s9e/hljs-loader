@@ -37,8 +37,9 @@ foreach ($map as $lang => $aliases)
 	$map[$lang] = implode(',', $aliases);
 }
 
-$package = json_decode(file_get_contents($extPath . 'package.json'));
-$version = $package->version;
+// Get highlight.js version from git
+chdir($extPath);
+$version = exec('git tag -l --sort=version:refname | tail -n1');
 
 // Update README.md
 $filepath = realpath(__DIR__ . '/../README.md');
