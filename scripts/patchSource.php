@@ -1,5 +1,6 @@
 <?php
 
+$version = $_SERVER['argv'][1] ?? '';
 $extPath = __DIR__ . '/../ext/highlight.js/';
 
 $map = [];
@@ -38,8 +39,11 @@ foreach ($map as $lang => $aliases)
 }
 
 // Get highlight.js version from git
-chdir($extPath);
-$version = exec('git tag -l --sort=version:refname | tail -n1');
+if ($version === '')
+{
+	chdir($extPath);
+	$version = exec('git tag -l --sort=version:refname | tail -n1');
+}
 
 // Update README.md
 $filepath = realpath(__DIR__ . '/../README.md');
