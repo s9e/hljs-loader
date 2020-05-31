@@ -32,15 +32,15 @@
 	* Create and return a synchronous script element
 	*
 	* @param  {string} path Path to the script, relative to the root URL and minus the .min.js suffix
-	* @return {!Node}
+	* @return {!HTMLScriptElement}
 	*/
 	function createScript(path)
 	{
-		let script   = document.createElement('script');
+		let script   = /** @type {!HTMLScriptElement} */ (document.createElement('script'));
 		script.async = false;
 		script.src   = url + path + '.min.js';
 
-		return document.head.appendChild(script);
+		return /** @type {!HTMLScriptElement} */ (document.head.appendChild(script));
 	}
 
 	/**
@@ -119,7 +119,7 @@
 
 		if (style !== 'none')
 		{
-			let link  = document.createElement('link');
+			let link  = /** @type {!HTMLLinkElement} */ (document.createElement('link'));
 			link.rel  = 'stylesheet';
 			link.href = url + 'styles/' + style + '.min.css';
 			document.head.appendChild(link);
