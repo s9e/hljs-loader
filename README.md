@@ -6,9 +6,9 @@ hljs-loader is a small (3 KB) script that can be added to any webpage to automat
 Add this anywhere to your HTML page:
 
 ```html
-<script async src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.12/loader.min.js"
+<script async src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.13/loader.min.js"
         crossorigin="anonymous"
-        integrity="sha384-8nvilyI853lFtVdVYU+pX+4cv/6EWFVYP9l52xHJjn2JaUD5ojvrRQyEjB1nuh/v"></script>
+        integrity="sha384-Uf1mHO1+GzzE/kSxUZ3626n9Iq4qu1fUj03dOitZmaKCoJUBEx5u1ONu4xcwPvUM"></script>
 ```
 
 
@@ -17,13 +17,13 @@ Add this anywhere to your HTML page:
 No configuration is required but a number of options are available and can be set on the `script` element that loads this script.
 
 ```html
-<script async src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.12/loader.min.js"
+<script async src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.13/loader.min.js"
         crossorigin="anonymous"
         data-hljs-observe="body"
         data-hljs-options='{"tabReplace":"    "}'
         data-hljs-style="github"
-        data-hljs-url="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/"
-        integrity="sha384-8nvilyI853lFtVdVYU+pX+4cv/6EWFVYP9l52xHJjn2JaUD5ojvrRQyEjB1nuh/v"></script>
+        data-hljs-url="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.0/build/"
+        integrity="sha384-Uf1mHO1+GzzE/kSxUZ3626n9Iq4qu1fUj03dOitZmaKCoJUBEx5u1ONu4xcwPvUM"></script>
 ```
 
 <dl>
