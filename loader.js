@@ -222,7 +222,7 @@
 		options       = config['hljsOptions'],
 		skip          = {},
 		style         = config['hljsStyle'] || 'default',
-		url           = config['hljsUrl']   || 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.0/build/';
+		url           = config['hljsUrl']   || 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/';
 
 	// Prepare to highlight all code blocks as soon as possible
 	if (document.readyState === 'complete')
