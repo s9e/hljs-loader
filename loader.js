@@ -214,7 +214,7 @@
 	}
 
 	// Initialize global variables
-	let config        = document.currentScript ? document.currentScript.dataset : {},
+	let config        = document.currentScript.dataset,
 		loaded        = false,
 		map,
 		observeTarget = config['hljsObserve'],
