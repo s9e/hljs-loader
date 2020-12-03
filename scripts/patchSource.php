@@ -3,13 +3,20 @@
 $version = $_SERVER['argv'][1] ?? '';
 $extPath = __DIR__ . '/../ext/highlight.js/';
 
-$map = [];
+$map     = [];
+$default = [];
 foreach (glob($extPath . 'src/languages/*.js') as $filepath)
 {
 	$file = file_get_contents($filepath);
 	$lang = basename($filepath, '.js');
-	if (preg_match('(category:\\s*common)i', $file))
+	if (preg_match('(^category:\\s*common)im', $file))
 	{
+		// Keep track of imported syntaxes
+		if (preg_match("(^import \\w+ from './([-\\w]++).js)m", $file, $m))
+		{
+			$default[] = $m[1];
+		}
+
 		// Skip default languages
 		continue;
 	}
@@ -27,6 +34,12 @@ foreach (glob($extPath . 'src/languages/*.js') as $filepath)
 	}
 }
 ksort($map);
+
+// Remove imported syntaxes from default languages
+foreach ($default as $lang)
+{
+	unset($map[$lang]);
+}
 
 foreach ($map as $lang => $aliases)
 {
