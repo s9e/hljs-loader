@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname $0)/../ext/highlight.js"
-git fetch
+git fetch --tags -f
 version=$(git tag -l --sort=version:refname | tail -n1)
 git checkout "$version"
 
