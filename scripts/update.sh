@@ -2,7 +2,7 @@
 
 cd "$(dirname $0)/../ext/highlight.js"
 git fetch --tags -f
-version=$(git tag -l --sort=version:refname | tail -n1)
+version=$(git tag -l --sort=version:refname | grep -v "-" | tail -n1)
 git checkout "$version"
 
 cd ../../scripts
