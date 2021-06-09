@@ -40,6 +40,10 @@
 		script.async  = false;
 		script.onload = onload;
 		script.src    = url + path + '.min.js';
+		if (nonce)
+		{
+			script.nonce = nonce;
+		}
 
 		document.head.appendChild(script);
 	}
@@ -215,9 +219,11 @@
 	}
 
 	// Initialize global variables
-	let config        = document.currentScript.dataset,
+	let currentScript = document.currentScript,
+		config        = currentScript.dataset,
 		loaded        = false,
 		map,
+		nonce         = currentScript.nonce,
 		observeTarget = config['hljsObserve'],
 		observer,
 		options       = config['hljsOptions'],

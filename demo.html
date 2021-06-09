@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta http-equiv="Content-Security-Policy" content="script-src 'nonce-xxxx'">
 	<title></title>
 	<script async src="loader.min.js"
 			data-hljs-observe="body"
 			data-hljs-options='{"classPrefix":"hljs-"}'
-			data-hljs-style="github"
+			data-hljs-style="github-dark-dimmed"
+			nonce="xxxx"
 	></script>
 </head>
 <body>
@@ -17,7 +19,7 @@
 	<pre><code class="language-xsl">&lt;xsl:value-of select="@foo"/&gt;</code></pre>
 	<p>Click here to add an Erlang code block. Its grammar file will be loaded automatically.</p>
 
-	<script>
+	<script nonce="xxxx">
 		document.querySelector('p').onclick = function ()
 		{
 			let pre  = document.createElement('pre'),
