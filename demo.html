@@ -15,7 +15,7 @@
         data-hljs-style="github"
 &gt;&lt;/script&gt;</code></pre>
 	<pre><code class="language-xsl">&lt;xsl:value-of select="@foo"/&gt;</code></pre>
-	<p>Click here to add a Rust code block.</p>
+	<p>Click here to add an Erlang code block. Its grammar file will be loaded automatically.</p>
 
 	<script>
 		document.querySelector('p').onclick = function ()
@@ -23,8 +23,8 @@
 			let pre  = document.createElement('pre'),
 				code = pre.appendChild(document.createElement('code'));
 
-			code.className = 'language-rust';
-			code.innerHTML = 'fn main() {\n    println!("Hello World");\n}';
+			code.className = 'language-erlang';
+			code.innerHTML = '-module(hello).\n-export([hello_world/0]).\n\nhello_world() -> io:fwrite("hello, world\\n").';
 
 			document.body.appendChild(pre);
 		};

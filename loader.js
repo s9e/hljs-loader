@@ -31,16 +31,17 @@
 	/**
 	* Create and return a synchronous script element
 	*
-	* @param  {string} path Path to the script, relative to the root URL and minus the .min.js suffix
-	* @return {!HTMLScriptElement}
+	* @param {string}    path   Path to the script, relative to the root URL and minus the .min.js suffix
+	* @param {!Function} onload Callback for the "load" event
 	*/
-	function createScript(path)
+	function createScript(path, onload)
 	{
-		let script   = /** @type {!HTMLScriptElement} */ (document.createElement('script'));
-		script.async = false;
-		script.src   = url + path + '.min.js';
+		let script    = /** @type {!HTMLScriptElement} */ (document.createElement('script'));
+		script.async  = false;
+		script.onload = onload;
+		script.src    = url + path + '.min.js';
 
-		return /** @type {!HTMLScriptElement} */ (document.head.appendChild(script));
+		document.head.appendChild(script);
 	}
 
 	/**
@@ -124,14 +125,14 @@
 			link.href = url + 'styles/' + style + '.min.css';
 			document.head.appendChild(link);
 		}
-		createScript('highlight').onload = function ()
+		createScript('highlight', function ()
 		{
 			if (options)
 			{
 				window['hljs']['configure'](JSON.parse(options));
 			}
 			highlightAll();
-		};
+		});
 	}
 
 	/**
@@ -144,7 +145,7 @@
 		if (lang && !skip[lang])
 		{
 			skip[lang] = 1;
-			createScript('languages/' + lang).onload = highlightAll;
+			createScript('languages/' + lang, highlightAll);
 		}
 	}
 
