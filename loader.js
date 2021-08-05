@@ -146,11 +146,13 @@
 	*/
 	function loadLang(lang)
 	{
-		if (lang && !skip[lang])
+		if (skip[lang])
 		{
-			skip[lang] = 1;
-			createScript('languages/' + lang, highlightAll);
+			return;
 		}
+
+		skip[lang] = 1;
+		createScript('languages/' + lang, highlightAll);
 	}
 
 	function observerStart()
@@ -227,7 +229,7 @@
 		observeTarget = config['hljsObserve'],
 		observer,
 		options       = config['hljsOptions'],
-		skip          = {},
+		skip          = {'':1},
 		style         = config['hljsStyle'] || 'default',
 		url           = config['hljsUrl']   || 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/';
 
