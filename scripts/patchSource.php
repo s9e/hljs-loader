@@ -55,7 +55,7 @@ foreach ($map as $lang => $aliases)
 if ($version === '')
 {
 	chdir($extPath);
-	$version = exec('git tag -l --sort=version:refname | tail -n1');
+	$version = exec('git tag -l --sort=version:refname | grep -v "-" | tail -n1');
 }
 
 // Update README.md
@@ -90,4 +90,5 @@ if (!$cnt)
 }
 
 file_put_contents($filepath, $js);
+
 die("Done.\n");
