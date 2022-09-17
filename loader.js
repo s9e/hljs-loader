@@ -1,4 +1,4 @@
-(function (window, document)
+((window, document) =>
 {
 	if (window['hljsLoader'])
 	{
@@ -49,14 +49,14 @@
 	}
 
 	/**
-	* Return the canonical language for given block (empty if no language found)
+	* Return the canonical language for given code element (empty if no language found)
 	*
-	* @param  {!Element} block
+	* @param  {!Element} element
 	* @return {string}
 	*/
-	function getLangFromBlock(block)
+	function getLangFromElement(element)
 	{
-		let m = /\blang(?:uage)?-(\w+)/.exec(block.className.toLowerCase());
+		let m = /\blang(?:uage)?-(\w+)/.exec(element.className.toLowerCase());
 		if (m && !map)
 		{
 			// Delay generating the map until we actually need it
@@ -75,29 +75,29 @@
 	}
 
 	/**
-	* Highlight given code block
+	* Highlight given code element
 	*
-	* @param {!Element} block
+	* @param {!Element} element
 	*/
-	function highlightBlock(block)
+	function highlightElement(element)
 	{
 		loadHljs();
-		loadLang(getLangFromBlock(block));
+		loadLang(getLangFromElement(element));
 		if (window['hljs'])
 		{
-			window['hljs']['highlightElement'](block);
+			window['hljs']['highlightElement'](element);
 		}
 	}
 
 	/**
-	* Highlight all code blocks under given root node
+	* Highlight all code elements under given root element
 	*
-	* @param {!Node} root
+	* @param {!Element} root
 	*/
 	function highlightBlocks(root)
 	{
-		let blocks = root.querySelectorAll('pre>code:not(.hljs)'),
-			i      = blocks.length;
+		let elements = root.querySelectorAll('pre>code:not(.hljs)'),
+			i        = elements.length;
 		if (!i)
 		{
 			return;
@@ -106,7 +106,7 @@
 		observerStop();
 		while (--i >= 0)
 		{
-			highlightBlock(blocks[i]);
+			highlightElement(elements[i]);
 		}
 		observerStart();
 	}
@@ -129,7 +129,7 @@
 			link.href = url + 'styles/' + style + '.min.css';
 			document.head.appendChild(link);
 		}
-		createScript('highlight', function ()
+		createScript('highlight', () =>
 		{
 			if (options)
 			{
@@ -170,7 +170,17 @@
 
 		if (!observer)
 		{
-			observer = new MutationObserver(onMutations);
+			observer = new MutationObserver(
+				(mutations) => mutations.forEach(
+					(mutation) =>
+					{
+						if (mutation.addedNodes.length)
+						{
+							mutation.addedNodes.forEach(handleMutationAddedNode);
+						}
+					}
+				)
+			);
 		}
 		observer.observe(target, { 'childList': true, 'subtree': true });
 	}
@@ -184,31 +194,11 @@
 	}
 
 	/**
-	* @param {!Array.<!MutationRecord>} mutations
-	*/
-	function onMutations(mutations)
-	{
-		mutations.forEach(onMutation);
-	}
-
-	/**
-	* @param {!MutationRecord} mutation
-	*/
-	function onMutation(mutation)
-	{
-		if (mutation.addedNodes.length)
-		{
-			mutation.addedNodes.forEach(handleMutationAddedNode);
-		}
-	}
-
-	/**
 	* @param {!Node} node
 	*/
 	function handleMutationAddedNode(node)
 	{
-		// Node.ELEMENT_NODE
-		if (node.nodeType === 1)
+		if (node instanceof Element)
 		{
 			highlightBlocks(node);
 		}
@@ -244,13 +234,13 @@
 	}
 
 	window['hljsLoader'] = {
-		'disconnect':      function ()
+		'disconnect':      () =>
 		{
 			observerStop();
 			observeTarget = '';
 		},
 		'highlightBlocks': highlightBlocks,
-		'observe':         function (target)
+		'observe':         (target) =>
 		{
 			observeTarget = target;
 			observerStart();
