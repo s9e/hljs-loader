@@ -45,10 +45,67 @@ foreach ($map as $lang => $aliases)
 {
 	// Sort aliases but make sure the canonical name remains first of the list
 	unset($aliases[$lang]);
-	sort($aliases);
+	sort($aliases, SORT_STRING);
 	array_unshift($aliases, $lang);
 
-	$map[$lang] = implode(',', $aliases);
+	// Serialize the names as a comma-separated list of values
+	$str = implode(',', $aliases);
+
+	// Pack the names using our custom coding
+	$packedStr = implode(',', packNames($aliases));
+	if (!verifyAliases($str, $packedStr))
+	{
+		die("An error occured when packing $str into $packedStr\n");
+	}
+
+	$map[$lang] = $packedStr;
+}
+
+function packNames(array $names)
+{
+	foreach ($names as $fullIdx => $full)
+	{
+		foreach ($names as $prefixIdx => $prefix)
+		{
+			if ($prefixIdx === $fullIdx || !str_starts_with($full, $prefix))
+			{
+				continue;
+			}
+
+			if ($prefixIdx === 0)
+			{
+				// Pack http,https into http%s
+				$names[$prefixIdx] = $prefix . '%' . substr($full, strlen($prefix));
+				unset($names[$fullIdx]);
+			}
+			else
+			{
+				// Pack sci,scilab into sci!lab
+				$names[$fullIdx] = $prefix . '!' . substr($full, strlen($prefix));
+				unset($names[$prefixIdx]);
+			}
+			break;
+		}
+	}
+
+	return array_values($names);
+}
+
+function verifyAliases($str, $packedStr)
+{
+	$aliases       = explode(',', $str);
+	$packedAliases = explode(',', preg_replace('((\\w++)(?:%|!(\\w++)))', '$1$2,$1', $packedStr));
+
+	// Make sure the first name (the canonical name for aliases) is preserved
+	if ($packedAliases[0] !== $aliases[0])
+	{
+		return false;
+	}
+
+	sort($aliases,       SORT_STRING);
+	sort($packedAliases, SORT_STRING);
+
+	return $packedAliases === $aliases;
 }
 
 // Get highlight.js version from git
@@ -78,7 +135,7 @@ $js = preg_replace_callback(
 	'(aliases\\s*=\\s*\\K.++)',
 	function ($m) use ($map)
 	{
-		return "'" . implode(' ', $map) . "'.split(' '),";
+		return "'" . implode(' ', $map) . "'.replace(/(\\w+)(?:%|!(\\w+))/g, '\$1\$2,\$1').split(' '),";
 	},
 	$js,
 	-1,
