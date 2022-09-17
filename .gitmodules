@@ -1,3 +1,6 @@
 [submodule "ext/highlight.js"]
 	path = ext/highlight.js
 	url = https://github.com/highlightjs/highlight.js.git
+[submodule "ext/cdn-release"]
+	path = ext/cdn-release
+	url = https://github.com/highlightjs/cdn-release.git
