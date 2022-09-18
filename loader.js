@@ -6,26 +6,21 @@
 	}
 
 	/**
-	* Generate and return a map of aliases to their canonical name
-	*
-	* @return {!Object<string, string>}
+	* Fill the map of aliases to the language's canonical name
 	*/
 	function generateAliasMap()
 	{
-		let aliases = '1c abnf accesslog actionscript,as ada angelscript,asc apache%conf applescript,osascript arcade arduino arm!asm asciidoc,adoc aspectj autohotkey,ahk autoit avrasm awk axapta,x++ basic bnf brainfuck,bf cal capnp!roto ceylon clean,dcl,icl clojure,clj,edn clojure-repl cmake coffee!script,cson,iced coq cos,cls crm!sh,pcmk cr!ystal csp d dart delphi,dfm,dpr,pas!cal django,jinja dns,bind,zone docker!file dos,bat,cmd dsconfig dts dust,dst ebnf elixir,ex!s elm erb erl!ang erlang-repl excel,xls!x fix flix fortran,f90,f95 fs!harp,f# gams,gms gauss,gss gcode,nc gherkin,feature glsl gml golo gradle graphql,gql groovy haml handlebars,hbs,htmlbars haskell,hs haxe,hx hsp http%s hy%lang inform7,i7 irpf90 isbl jboss-cli,wildfly-cli julia julia-repl,jldoctest kotlin,kt!s lasso%script,ls latex,tex ldif leaf lisp livecodeserver livescript,ls llvm lsl mathematica,mma,wl matlab maxima mel m!ercury,moo mips!asm mizar mojolicious monkey moon!script n1ql nestedtext,nt nginx%conf nim nix%os node-repl nsis ocaml,ml openscad,scad oxygene parser3 pf pgsql,postgres!ql pony powershell,ps!1,pwsh processing,pde profile prolog properties protobuf puppet,pp purebasic,pb!i q,k!db qml,qt re!asonml rib roboconf,graph,instances routeros,mikrotik rsl ruleslanguage sas scala scheme sci!lab smali smalltalk,st sml,ml sqf sql stan%funcs stata,ado,do step!21,p21,stp styl!us subunit taggerscript tap tcl,tk thrift tp twig,craftcms vala vbs!cript vbscript-html v!erilog,sv!h vhdl vim wasm wren x86asm xl,tao xq!uery,xpath zep!hir'.replace(/(\w+)(?:%|!(\w+))/g, '$1$2,$1').split(' '),
-			i       = aliases.length,
-			map     = {};
-		while (--i >= 0)
+		const packedMap = '1c abnf accesslog actionscript,as ada angelscript,asc apache%conf applescript,osascript arcade arduino arm!asm asciidoc,adoc aspectj autohotkey,ahk autoit avrasm awk axapta,x++ basic bnf brainfuck,bf cal capnp!roto ceylon clean,dcl,icl clojure,clj,edn clojure-repl cmake coffee!script,cson,iced coq cos,cls crm!sh,pcmk cr!ystal csp d dart delphi,dfm,dpr,pas!cal django,jinja dns,bind,zone docker!file dos,bat,cmd dsconfig dts dust,dst ebnf elixir,ex!s elm erb erl!ang erlang-repl excel,xls!x fix flix fortran,f90,f95 fs!harp,f# gams,gms gauss,gss gcode,nc gherkin,feature glsl gml golo gradle graphql,gql groovy haml handlebars,hbs,htmlbars haskell,hs haxe,hx hsp http%s hy%lang inform7,i7 irpf90 isbl jboss-cli,wildfly-cli julia julia-repl,jldoctest kotlin,kt!s lasso%script,ls latex,tex ldif leaf lisp livecodeserver livescript,ls llvm lsl mathematica,mma,wl matlab maxima mel m!ercury,moo mips!asm mizar mojolicious monkey moon!script n1ql nestedtext,nt nginx%conf nim nix%os node-repl nsis ocaml,ml openscad,scad oxygene parser3 pf pgsql,postgres!ql pony powershell,ps!1,pwsh processing,pde profile prolog properties protobuf puppet,pp purebasic,pb!i q,k!db qml,qt re!asonml rib roboconf,graph,instances routeros,mikrotik rsl ruleslanguage sas scala scheme sci!lab smali smalltalk,st sml,ml sqf sql stan%funcs stata,ado,do step!21,p21,stp styl!us subunit taggerscript tap tcl,tk thrift tp twig,craftcms vala vbs!cript vbscript-html v!erilog,sv!h vhdl vim wasm wren x86asm xl,tao xq!uery,xpath zep!hir';
+
+		map = {};
+		for (let str of packedMap.replace(/(\w+)(?:%|!(\w+))/g, '$1$2,$1').split(' '))
 		{
-			let aliasList = aliases[i].split(','),
-				j         = aliasList.length;
-			while (--j >= 0)
+			let aliases = str.split(',');
+			for (let alias of aliases)
 			{
-				map[aliasList[j]] = aliasList[0];
+				map[alias] = aliases[0];
 			}
 		}
-
-		return map;
 	}
 
 	/**
@@ -60,7 +55,7 @@
 		if (m && !map)
 		{
 			// Delay generating the map until we actually need it
-			map = generateAliasMap();
+			generateAliasMap();
 		}
 
 		return (m) ? (map[m[1]] || '') : '';

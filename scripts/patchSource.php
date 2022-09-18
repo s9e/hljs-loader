@@ -132,10 +132,10 @@ if (!$cnt)
 }
 
 $js = preg_replace_callback(
-	'(aliases\\s*=\\s*\\K.++)',
+	'(packedMap\\s*=\\s*\\K.++)',
 	function ($m) use ($map)
 	{
-		return "'" . implode(' ', $map) . "'.replace(/(\\w+)(?:%|!(\\w+))/g, '\$1\$2,\$1').split(' '),";
+		return "'" . implode(' ', $map) . "';";
 	},
 	$js,
 	-1,
