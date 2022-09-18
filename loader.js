@@ -91,19 +91,16 @@
 	*/
 	function highlightBlocks(root)
 	{
-		let elements = root.querySelectorAll('pre>code:not(.hljs)'),
-			i        = elements.length;
-		if (!i)
+		let elements = root.querySelectorAll('pre>code:not(.hljs)');
+		if (elements.length)
 		{
-			return;
+			observerStop();
+			for (let element of elements)
+			{
+				highlightElement(element);
+			}
+			observerStart();
 		}
-
-		observerStop();
-		while (--i >= 0)
-		{
-			highlightElement(elements[i]);
-		}
-		observerStart();
 	}
 
 	/**
