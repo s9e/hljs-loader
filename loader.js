@@ -24,15 +24,16 @@
 	}
 
 	/**
-	* Create and return a synchronous script element
-	*
 	* @param {string}    path   Path to the script, relative to the root URL and minus the .min.js suffix
 	* @param {!Function} onload Callback for the "load" event
 	*/
 	function createScript(path, onload)
 	{
-		let script    = /** @type {!HTMLScriptElement} */ (document.createElement('script'));
-		script.async  = false;
+		let script = /** @type {!HTMLScriptElement} */ (document.createElement('script'));
+
+		// Language files can be loaded asynchronously if highlight.js has already been loaded
+		script.async  = hljsLoaded;
+		script.defer  = true;
 		script.onload = onload;
 		script.src    = url + path + '.min.js';
 		if (nonce)
@@ -108,11 +109,11 @@
 	*/
 	function loadHljs()
 	{
-		if (loaded)
+		if (hljsLoaded)
 		{
 			return;
 		}
-		loaded = true;
+		hljsLoaded = true;
 
 		if (style !== 'none')
 		{
@@ -205,7 +206,7 @@
 	// Initialize global variables
 	let currentScript = document.currentScript,
 		config        = currentScript.dataset,
-		loaded        = false,
+		hljsLoaded    = false,
 		map,
 		nonce         = currentScript.nonce,
 		observeTarget = config['hljsObserve'],

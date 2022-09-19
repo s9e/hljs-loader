@@ -6,7 +6,7 @@ hljs-loader is a small (3 KB) script that can be added to any webpage to automat
 Add this anywhere to your HTML page:
 
 ```html
-<script async src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.31/loader.min.js"
+<script defer src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.31/loader.min.js"
         crossorigin="anonymous"
         integrity="sha384-vbylffRV+sn4FL7ftwAw6eJ1uNcsQT3ETMpPJQZaOtzW+0d+jnlf1LJj9Jgf8Scp"></script>
 ```
@@ -17,7 +17,7 @@ Add this anywhere to your HTML page:
 No configuration is required but a number of options are available and can be set on the `script` element that loads this script.
 
 ```html
-<script async src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.31/loader.min.js"
+<script defer src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.31/loader.min.js"
         crossorigin="anonymous"
         data-hljs-observe="body"
         data-hljs-options='{"classPrefix":""}'
