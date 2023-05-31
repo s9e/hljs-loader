@@ -167,10 +167,18 @@
 				(mutations) => mutations.forEach(
 					(mutation) =>
 					{
-						if (mutation.addedNodes.length)
+						if (!mutation.addedNodes.length)
 						{
-							mutation.addedNodes.forEach(handleMutationAddedNode);
+							return;
 						}
+						mutation.addedNodes.forEach(
+							(node) => {
+								if (node instanceof Element)
+								{
+									highlightBlocks(node);
+								}
+							}
+						);
 					}
 				)
 			);
@@ -183,17 +191,6 @@
 		if (observer)
 		{
 			observer.disconnect();
-		}
-	}
-
-	/**
-	* @param {!Node} node
-	*/
-	function handleMutationAddedNode(node)
-	{
-		if (node instanceof Element)
-		{
-			highlightBlocks(node);
 		}
 	}
 
