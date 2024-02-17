@@ -41,7 +41,7 @@
 			script.nonce = nonce;
 		}
 
-		document.head.appendChild(script);
+		document.head.append(script);
 	}
 
 	/**
@@ -120,7 +120,7 @@
 			let link  = /** @type {!HTMLLinkElement} */ (document.createElement('link'));
 			link.rel  = 'stylesheet';
 			link.href = url + 'styles/' + style + '.min.css';
-			document.head.appendChild(link);
+			document.head.append(link);
 		}
 		createScript('highlight', () =>
 		{
