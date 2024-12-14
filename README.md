@@ -6,9 +6,9 @@ hljs-loader is a small (3 KB) script that can be added to any webpage to automat
 Add this anywhere to your HTML page:
 
 ```html
-<script defer src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.35/loader.min.js"
+<script defer src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.36/loader.min.js"
         crossorigin="anonymous"
-        integrity="sha384-BVsWQNRIIoz5p+TboZLw6oEKZjhdp1/cTXJOM22filkkMTKXRC8l7s2g9+rA3eoA"></script>
+        integrity="sha384-ENgSnUL5UgeHebIZiuTpRAT4+a3licJ29eIcCndVuHFJvncvtdJoQL0XIBStbgl9"></script>
 ```
 
 
@@ -17,13 +17,13 @@ Add this anywhere to your HTML page:
 No configuration is required but a number of options are available and can be set on the `script` element that loads this script.
 
 ```html
-<script defer src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.35/loader.min.js"
+<script defer src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.36/loader.min.js"
         crossorigin="anonymous"
         data-hljs-observe="body"
         data-hljs-options='{"classPrefix":""}'
         data-hljs-style="github"
-        data-hljs-url="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.10.0/build/"
-        integrity="sha384-BVsWQNRIIoz5p+TboZLw6oEKZjhdp1/cTXJOM22filkkMTKXRC8l7s2g9+rA3eoA"></script>
+        data-hljs-url="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.0/build/"
+        integrity="sha384-ENgSnUL5UgeHebIZiuTpRAT4+a3licJ29eIcCndVuHFJvncvtdJoQL0XIBStbgl9"></script>
 ```
 
 <dl>
